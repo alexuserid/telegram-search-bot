@@ -12,6 +12,7 @@ try:
         try:
             searchRequest = urlopen(Request('https://www.startpage.com/do/search?q=' + urllib.parse.quote(message.text) + '&l=russian',
                 headers={'User-Agent': 'Mozilla'})).read()
+            bsObj = BeautifulSoup(searchRequest, "html.parser")
             resultList = bsObj.findAll('div', {'class': 'result'})
             ansver = "____"
             for result in resultList:
